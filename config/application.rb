@@ -35,6 +35,8 @@ module Hello
     origins.map! { |url| /#{url}/ }
     config.action_cable.allowed_request_origins = origins
 
+    config.time_zone = 'Tokyo'
+
     # Customizing Rails Generations
     config.generators do |g|
       g.assets false

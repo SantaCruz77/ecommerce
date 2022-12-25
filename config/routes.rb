@@ -6,9 +6,7 @@ Rails.application.routes.draw do
     sessions: 'customer/sessions',
     registrations: 'customer/registrations'
   }
-
   root to: 'pages#home'
-
   namespace :admin do
     resources :products, only: %i[index show new create edit update]
   end
@@ -22,6 +20,11 @@ Rails.application.routes.draw do
     end
     resources :checkouts, only: [:create]
     resources :webhooks, only: [:create]
+    resources :orders, only: %i[index show] do
+      collection do
+        get 'success'
+      end
+    end
   end
 
   get '/up/', to: 'up#index', as: :up
